@@ -1,5 +1,6 @@
-package imhotep.harvesters;
+package imhotep.support;
 
+import imhotep.FileHarvester;
 import support.FileUtils;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package imhotep.harvesters;
+package imhotep;
 
 public interface FileHarvester {
 

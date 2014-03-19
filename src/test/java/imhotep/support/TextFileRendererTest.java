@@ -1,5 +1,6 @@
-package imhotep;
+package imhotep.support;
 
+import imhotep.support.TextFileRenderer;
 import org.junit.Before;
 import org.junit.Test;
 import support.FileUtils;

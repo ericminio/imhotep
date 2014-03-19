@@ -1,5 +1,6 @@
-package imhotep;
+package imhotep.support;
 
+import imhotep.PyramidRenderer;
 import support.FileUtils;
 
 import java.io.IOException;

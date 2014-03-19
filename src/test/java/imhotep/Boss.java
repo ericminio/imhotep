@@ -1,6 +1,7 @@
 package imhotep;
 
-import imhotep.harvesters.JavaTestFileHarvester;
+import imhotep.support.JavaTestFileHarvester;
+import imhotep.support.TextFileRenderer;
 
 import java.io.IOException;
 

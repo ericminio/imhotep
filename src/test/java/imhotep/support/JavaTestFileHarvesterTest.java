@@ -1,5 +1,6 @@
-package imhotep.harvesters;
+package imhotep.support;
 
+import imhotep.FileHarvester;
 import org.junit.Before;
 import org.junit.Test;
 import support.FileUtils;

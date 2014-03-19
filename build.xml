@@ -1,0 +1,61 @@
+<project name="Imhotep" default="dist" basedir=".">
+    <description>
+        a build file for the Imhotep tool.
+    </description>
+
+    <property name="src" location="src/main/java"/>
+    <property name="tests" location="src/test/java"/>
+    <property name="lib" location="lib"/>
+
+    <property name="build" location="out"/>
+    <property name="dist"  location="dist"/>
+    <property name="reports"  location="reports"/>
+
+    <target name="clean"
+            description="clean up" >
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+        <delete dir="${reports}"/>
+    </target>
+
+    <target name="init" depends="clean">
+        <tstamp/>
+        <mkdir dir="${build}"/>
+        <mkdir dir="${dist}"/>
+        <mkdir dir="${reports}"/>
+    </target>
+
+    <target name="compile" depends="init"
+            description="compile the source " >
+        <javac includeAntRuntime="false" srcdir="${src}" destdir="${build}"/>
+    </target>
+
+    <target name="dist" depends="compile"
+            description="generate the distribution" >
+        <jar jarfile="${dist}/imhotep-${DSTAMP}.jar" basedir="${build}"/>
+    </target>
+
+    <target name="compile_all" depends="compile"
+            description="compile the source and the tests " >
+        <javac includeAntRuntime="false" srcdir="${tests}" destdir="${build}"
+               classpath="${lib}/junit.jar; ${lib}/hamcrest-all-1.2.jar; ${lib}/mockito-all-1.8.5.jar;" />
+    </target>
+
+    <target name="test" depends="compile_all">
+        <junit haltonfailure="on">
+            <classpath>
+                <pathelement location="${lib}/junit.jar"/>
+                <pathelement location="${lib}/hamcrest-all-1.2.jar"/>
+                <pathelement location="${lib}/mockito-all-1.8.5.jar"/>
+                <pathelement location="${build}" />
+            </classpath>
+            <batchtest fork="yes" todir="${reports}">
+                <fileset dir="${build}">
+                    <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+            <formatter type="plain" usefile="false" />
+        </junit>
+    </target>
+
+</project>

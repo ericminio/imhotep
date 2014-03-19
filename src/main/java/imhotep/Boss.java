@@ -1,7 +1,5 @@
 package imhotep;
 
-import imhotep.detectors.NonWindowLickerDetector;
-import imhotep.detectors.WindowLickerDetector;
 import imhotep.harvesters.JavaTestFileHarvester;
 
 import java.io.IOException;
@@ -10,12 +8,11 @@ public class Boss {
 
     public static void main(String... arg) throws IOException {
 
-        ReportBuilder reporter = new ReportBuilder();
-        reporter.useFileHarvester( new JavaTestFileHarvester( "src/test/java" ) );
-        reporter.use( new WindowLickerDetector() );
-        reporter.use( new NonWindowLickerDetector() );
-        reporter.writeReportInDirectory( "reports" );
+        PyramidBuilder imhotep = new PyramidBuilder();
+        imhotep.givenThisLand( new JavaTestFileHarvester( "src/test/java" ) );
+        imhotep.givenThisTool( new TextFileRenderer( "reports" ) );
+        imhotep.havingInMindThoseLevels( "layout", "windowlicker" );
 
-        reporter.execute();
+        imhotep.buildPyramid();
     }
 }

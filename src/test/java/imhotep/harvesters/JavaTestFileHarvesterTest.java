@@ -1,10 +1,11 @@
 package imhotep.harvesters;
 
-import support.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
+import support.FileUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -20,6 +21,13 @@ public class JavaTestFileHarvesterTest {
     createDataDirectory() {
         FileUtils.createOrCleanDirectory( WORKING_DIRECTORY );
         FileUtils.createOrCleanDirectory( WORKING_DIRECTORY + "/" + SUB_DIRECTORY );
+    }
+
+    @Test public void
+    keepsDirectoryNameAvailable() {
+        FileHarvester harvester = new JavaTestFileHarvester( WORKING_DIRECTORY );
+
+        assertThat( harvester.getDirectory(), equalTo( WORKING_DIRECTORY ) );
     }
 
     @Test public void
@@ -85,6 +93,13 @@ public class JavaTestFileHarvesterTest {
         List<File> files = new JavaTestFileHarvester(WORKING_DIRECTORY).harvestTestFilesInDirectory();
 
         assertThat( files.get(0).getAbsolutePath(), containsString( "dummyTest" ));
+    }
+
+    @Test public void
+    resitsNonExistingDirectory() {
+        List<File> files = new JavaTestFileHarvester("/anything-that-does-not-exists").harvestTestFilesInDirectory();
+
+        assertThat( files.size(), equalTo( 0 ));
     }
 
 }

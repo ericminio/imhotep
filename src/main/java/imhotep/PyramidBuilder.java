@@ -11,19 +11,19 @@ public class PyramidBuilder {
     private FileHarvester fileHarvester;
     private PyramidRenderer renderer;
 
-    public void useHarvester(FileHarvester fileHarvester) {
+    public void givenThisLand(FileHarvester fileHarvester) {
         this.fileHarvester = fileHarvester;
     }
 
-    public void buildLevels(String... levels) {
+    public void havingInMindThoseLevels(String... levels) {
         this.levels = Arrays.asList( levels );
     }
 
-    public void useTools(PyramidRenderer renderer) {
+    public void givenThisTool(PyramidRenderer renderer) {
         this.renderer = renderer;
     }
 
-    public void go() {
+    public void buildPyramid() {
         Integer[] sizes = new Integer[levels.size()];
         String fileContent;
         while ((fileContent = fileHarvester.nextContent()) != null) {
@@ -36,6 +36,7 @@ public class PyramidBuilder {
             }
 
         }
+        renderer.setPyramidName( fileHarvester.getDirectory() );
         renderer.render( levels, Arrays.asList( sizes ));
     }
 

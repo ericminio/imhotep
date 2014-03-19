@@ -31,16 +31,22 @@ public class ImhotepTest {
     @Before public void
     whenImhotepHasTheFollowingInspiration() throws IOException {
         FileHarvester stub = mock( FileHarvester.class );
+        when( stub.getDirectory() ).thenReturn( "The best pyramid ever" );
         when( stub.nextContent() ).thenReturn( firstFile, secondFile, null );
 
         PyramidBuilder imhotep = new PyramidBuilder();
-        imhotep.useHarvester( stub );
-        imhotep.buildLevels( "Domain", "Service" );
+        imhotep.givenThisLand( stub );
+        imhotep.havingInMindThoseLevels( "Domain", "Service" );
 
         renderer = mock( PyramidRenderer.class);
-        imhotep.useTools(renderer);
+        imhotep.givenThisTool( renderer );
 
-        imhotep.go();
+        imhotep.buildPyramid();
+    }
+
+    @Test public void
+    heGivesANameToThePyramid() {
+        verify(renderer).setPyramidName( "The best pyramid ever" );
     }
 
     @Test public void

@@ -18,8 +18,10 @@ public class JavaTestFileHarvester implements FileHarvester {
 
     public List<File> harvestTestFilesInDirectory() {
         ArrayList<File> files = new ArrayList<File>();
-
         File dir = new File( path );
+
+        if (! dir.exists() ) return files;
+
         for(File file:dir.listFiles()) {
 
             if ( file.isDirectory() ) {
@@ -45,5 +47,10 @@ public class JavaTestFileHarvester implements FileHarvester {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @Override
+    public String getDirectory() {
+        return path;
     }
 }

@@ -2,7 +2,6 @@ package imhotep;
 
 import imhotep.harvesters.FileHarvester;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,13 +24,19 @@ public class PyramidBuilder {
     }
 
     public void go() {
-        List<Integer> sizes = new ArrayList<Integer>();
+        Integer[] sizes = new Integer[levels.size()];
         String fileContent;
         while ((fileContent = fileHarvester.nextContent()) != null) {
-            int size = fileContent.split( "@Test" ).length - 1;
-            sizes.add( size );
+
+            for (int i = 0; i < levels.size(); i++) {
+                if (fileContent.indexOf("@Imhotep(level=\"" + levels.get( i ) + "\")") != -1) {
+                    int size = fileContent.split( "@Test" ).length - 1;
+                    sizes[i] = size ;
+                }
+            }
+
         }
-        renderer.render( levels, sizes );
+        renderer.render( levels, Arrays.asList( sizes ));
     }
 
 }

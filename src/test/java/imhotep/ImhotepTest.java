@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
-public class PyramidBuilderTest {
+public class ImhotepTest {
 
     private String report;
     private String firstFile = "" +
@@ -45,8 +45,8 @@ public class PyramidBuilderTest {
 
     @Test public void
     heBuildsABeautifulPyramid() {
-        List<String> levels = Arrays.asList( "Service", "Domain" );
-        List<Integer> sizes = Arrays.asList( 3, 2 );
+        List<String> levels = Arrays.asList( "Domain", "Service" );
+        List<Integer> sizes = Arrays.asList( 2, 3 );
 
         verify(renderer).render(levels, sizes);
     }

@@ -9,7 +9,7 @@ public class PyramidBuilder {
     private FileHarvester fileHarvester;
     private PyramidRenderer renderer;
 
-    public void givenThisLand(FileHarvester fileHarvester) {
+    public void givenThisMaterial(FileHarvester fileHarvester) {
         this.fileHarvester = fileHarvester;
     }
 
@@ -17,7 +17,7 @@ public class PyramidBuilder {
         this.levels = Arrays.asList( levels );
     }
 
-    public void givenThisTool(PyramidRenderer renderer) {
+    public void givenThisFreeLand(PyramidRenderer renderer) {
         this.renderer = renderer;
     }
 

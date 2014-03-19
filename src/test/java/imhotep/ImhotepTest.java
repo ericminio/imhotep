@@ -34,11 +34,11 @@ public class ImhotepTest {
         when( stub.nextContent() ).thenReturn( firstFile, secondFile, null );
 
         PyramidBuilder imhotep = new PyramidBuilder();
-        imhotep.givenThisLand( stub );
+        imhotep.givenThisMaterial( stub );
         imhotep.havingInMindThoseLevels( "Domain", "Service" );
 
         renderer = mock( PyramidRenderer.class);
-        imhotep.givenThisTool( renderer );
+        imhotep.givenThisFreeLand( renderer );
 
         imhotep.buildPyramid();
     }

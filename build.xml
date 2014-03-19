@@ -27,7 +27,8 @@
 
     <target name="compile" depends="init"
             description="compile the source " >
-        <javac includeAntRuntime="false" srcdir="${src}" destdir="${build}"/>
+        <javac includeAntRuntime="false" srcdir="${src}" destdir="${build}"
+               classpath="${lib}/ant.jar; "/>
     </target>
 
     <target name="dist" depends="compile"

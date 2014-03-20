@@ -1,4 +1,4 @@
-<project name="Imhotep" default="dist" basedir=".">
+<project name="Imhotep" basedir=".">
     <description>
         a build file for the Imhotep tool.
     </description>
@@ -31,11 +31,6 @@
                classpath="${lib}/ant.jar; "/>
     </target>
 
-    <target name="dist" depends="compile"
-            description="generate the distribution" >
-        <jar jarfile="${dist}/imhotep-${DSTAMP}.jar" basedir="${build}"/>
-    </target>
-
     <target name="compile_all" depends="compile"
             description="compile the source and the tests " >
         <javac includeAntRuntime="false" srcdir="${tests}" destdir="${build}"
@@ -57,6 +52,11 @@
             </batchtest>
             <formatter type="plain" usefile="false" />
         </junit>
+    </target>
+
+    <target name="ship" depends="compile"
+            description="generate the distribution" >
+        <jar jarfile="${dist}/imhotep-${DSTAMP}-${TSTAMP}.jar" basedir="${build}"/>
     </target>
 
 </project>

@@ -77,7 +77,7 @@ public class JavaTestFileHarvesterTest {
         FileUtils.writeStringToFile( "any content", WORKING_DIRECTORY + "/dummy.2.Test.java" );
         List<File> files = new JavaTestFileHarvester(WORKING_DIRECTORY).harvestTestFilesInDirectory();
 
-        assertThat( files.get(1).getAbsolutePath(), containsString( "dummy.2" ));
+        assertThat( files.size(), equalTo( 2 ));
     }
 
     @Test public void

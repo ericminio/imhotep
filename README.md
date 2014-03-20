@@ -18,22 +18,34 @@ Given the following java files in directory src/test/java
 
 When I ask Imhotep to build the pyramid
 
-    public static void main(String... arg) throws IOException {
+    <project name="imhotep report" default="report" basedir=".">
 
-		PyramidBuilder imhotep = new PyramidBuilder();
-		imhotep.useHarvester( new JavaTestFileHarvester( "src/test/java" ) );
-		imhotep.buildLevel( "Domain" );
-		imhotep.buildLevel( "Service" );
-		imhotep.useTools( new HtmlRendererInDirectory( "reports" ) );
+        <property name="src.dir"  location="src/test/java"/>
+        <property name="pyramid.dir"  location="reports"/>
+        <property name="imhotep.jar.dir"  location="lib"/>
 
-		imhotep.go();
-    }
+        <target name="init">
+            <tstamp/>
+            <mkdir dir="${pyramid.dir}"/>
+        </target>
+
+        <taskdef name="imhotep" classname="imhotep.ImhotepAntTask">
+            <classpath path="${imhotep.jar.dir}/imhotep-20140319.jar" />
+        </taskdef>
+
+        <target name="report" depends="init" >
+            <imhotep sourcedir="${src.dir}" destdir="${pyramid.dir}">
+                <level name="Domain"/>
+                <level name="Service"/>
+            </imhotep>
+        </target>
+
+
+    </project>
 
 Then Imhotep build the following reports/pyramid.html
 
-	<html>
-    	<body>
-    	    	Service: 3<br/>
-    	    	Domain: 1<br/>
-    	</body>
-	</html>
+	Pyramid: src/test/java
+
+	Domain: 1
+	Service: 3

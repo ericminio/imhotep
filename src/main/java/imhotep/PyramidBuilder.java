@@ -23,13 +23,16 @@ public class PyramidBuilder {
 
     public void buildPyramid() {
         Integer[] sizes = new Integer[levels.size()];
+        for (int i = 0; i < levels.size(); i++) {
+            sizes[i] = 0;
+        }
         String fileContent;
         while ((fileContent = fileHarvester.nextContent()) != null) {
 
             for (int i = 0; i < levels.size(); i++) {
                 if (fileContent.indexOf("@Imhotep(level=\"" + levels.get( i ) + "\")") != -1) {
                     int size = fileContent.split( "@Test" ).length - 1;
-                    sizes[i] = size ;
+                    sizes[i] = size + sizes[i];
                 }
             }
 

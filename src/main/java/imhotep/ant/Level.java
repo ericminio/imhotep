@@ -1,4 +1,4 @@
-package imhotepLevel;
+package imhotep.ant;
 
 public class Level {
 

@@ -1,8 +1,8 @@
-package imhotep;
+package imhotep.ant;
 
+import imhotep.PyramidBuilder;
 import imhotep.support.JavaTestFileHarvester;
 import imhotep.support.TextFileRenderer;
-import imhotepLevel.Level;
 import org.apache.tools.ant.BuildException;
 
 import java.util.ArrayList;

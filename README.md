@@ -29,7 +29,7 @@ When I ask Imhotep to build the pyramid
             <mkdir dir="${pyramid.dir}"/>
         </target>
 
-        <taskdef name="imhotep" classname="imhotep.ImhotepAntTask">
+        <taskdef name="imhotep" classname="imhotep.ant.ImhotepAntTask">
             <classpath path="${imhotep.jar.dir}/imhotep-20140319.jar" />
         </taskdef>
 
